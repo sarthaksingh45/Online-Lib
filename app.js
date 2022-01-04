@@ -10,7 +10,7 @@ app.get("/login", (req, res) => {
     let {userName, userPassword} = req.body;
     User.findOne({name : userName}, (err, User) => {
         if(err) res.send(JSON.stringify({msg: "Something went wrong"}));
-        if(User.password == userPassword){
+        else if(User.password == userPassword){
             res.send(JSON.stringify({msg: "all good"}));
         }else{
             res.send(JSON.stringify({msg: "Bad user"}));
