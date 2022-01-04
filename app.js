@@ -6,7 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000"));
 
-app.get("/login", (req, res) => {
+app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
     User.findOne({name : userName}, (err, User) => {
         if(User == null){
