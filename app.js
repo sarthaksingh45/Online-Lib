@@ -9,14 +9,13 @@ app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000
 app.get("/login", (req, res) => {
     let {userName, userPassword} = req.body;
     User.findOne({name : userName}, (err, User) => {
-        console.log(User);
-
-
+        if(err) res.send(JSON.stringify({msg: "Something went wrong"}));
+        if(User.password == userPassword){
+            res.send(JSON.stringify({msg: "all good"}));
+        }else{
+            res.send(JSON.stringify({msg: "Bad user"}));
+        }
     })
-    res.send(JSON.stringify({
-        title: "something",
-        msg : 'All good'
-    }));
 });
 
 
