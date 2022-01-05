@@ -13,8 +13,8 @@ app.post("/login", (req, res) => {
             res.send(JSON.stringify({msg: "Not a User"}));
         }
         else if(User.password == userPassword){
-            delete User['password'];
-            res.send(JSON.stringify({msg: "all good", user: User}));
+            
+            res.send(JSON.stringify({msg: "all good", name: User.name, email: User.email, phone: User.phone}));
         }else{
             res.send(JSON.stringify({msg: "Bad user"}));
         }
@@ -24,10 +24,12 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res)=>{
     //console.log(req.body);
-    let {userName, userPassword} = req.body;
+    let {userName, userPassword,userEmail, userPhone} = req.body;
     const user = new User({
         name: userName,
-        password: userPassword
+        password: userPassword,
+        email: userEmail,
+        phone: userPhone
     });
     user.save();
     res.send(JSON.stringify({msg: "All Good"}));
@@ -44,7 +46,9 @@ main().catch( err => console.log(err));
 
 const userSchema = new mongoose.Schema({
     name: String,
-    password: String
+    password: String,
+    email: String,
+    phone: String
 });
 
 const User = mongoose.model('User', userSchema);
