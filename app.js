@@ -52,3 +52,109 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
+
+app.get("/imppages",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        <a href="https://our-online-library.herokuapp.com/aboutus">About us</a>
+        <a href="https://our-online-library.herokuapp.com/contactus">Contact us</a>
+        <a href="https://our-online-library.herokuapp.com/privacy">Privacy Policies</a>
+        <a href="https://our-online-library.herokuapp.com/terms">Terms & conditions</a>
+        <a href="https://our-online-library.herokuapp.com/cancellation">Cancellation/Refund Policies</a>
+        
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
+app.get("/aboutus",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+       About Us: This page is under construction..Also we need some workforce if you would like to join us then visit the contact page.
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
+app.get("/contactus",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+       Contact Us: 
+       Karan Kapoor:persaccsarthak@gmail.com
+       Sarthak Singh: sarthaksingh38@gmail.com
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
+app.get("/privacy",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        Privacy: All the Data you give will be stored in our Database and will not be shared with anyone at any cost.
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
+app.get("/terms",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        Terms: This page is under Construction. In case of any dispute final decision will be of the owner of the business.
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
+app.get("/cancellation",(req,res) => {
+    res.send(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Online Lib Dev Pages</title>
+        <link rel="stylesheet" href="style.css">
+      </head>
+      <body>
+        Cancellation terms:All cancelaltion rights reserved to the owner: 
+        <br>
+        
+        <script src="index.js"></script>
+      </body>
+    </html>`);
+})
