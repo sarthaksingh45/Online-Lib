@@ -13,7 +13,8 @@ app.post("/login", (req, res) => {
             res.send(JSON.stringify({msg: "Not a User"}));
         }
         else if(User.password == userPassword){
-            res.send(JSON.stringify({msg: "all good"}));
+            delete User['password'];
+            res.send(JSON.stringify({msg: "all good", user: User}));
         }else{
             res.send(JSON.stringify({msg: "Bad user"}));
         }
