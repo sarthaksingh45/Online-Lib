@@ -8,7 +8,7 @@ app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000
 
 app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
-    User.findOne({name : userName}, (err, User) => {
+    User.findOne({email : userName}, (err, User) => {
         if(User == null){
             res.send(JSON.stringify({msg: "Not a User"}));
         }
@@ -24,11 +24,11 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res)=>{
     //console.log(req.body);
-    let {userName, userPassword,userEmail, userPhone} = req.body;
+    let {userName, userPassword,userFullName, userPhone} = req.body;
     const user = new User({
-        name: userName,
+        name: userFullName,
         password: userPassword,
-        email: userEmail,
+        email: userName,
         phone: userPhone
     });
     user.save();
