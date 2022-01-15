@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
+var cors = require("cors");
+app.use(cors());
 
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
+//express.static(root);
+app.use(express.static('public'))
+app.set("view engine","ejs");
 
-app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000"));
+app.listen(3000, () => console.log("Server is listening on PORT 3000"));
 
 app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
@@ -20,6 +25,16 @@ app.post("/login", (req, res) => {
         }
     })
 });
+
+app.get("/home", (req,res) =>{
+  res.sendFile(__dirname+"/public/index.html");
+});
+
+app.get("/public-library", (req,res) => {
+  let username = req.query.username;
+  console.log(username);
+  res.render("lib",{user: "jakghldaghl", email:"something@gmail.com"});
+})
 
 
 app.post("/register", (req, res)=>{
@@ -86,6 +101,7 @@ app.get("/aboutus",(req,res) => {
       </head>
       <body>
        About Us: This page is under construction..Also we need some workforce if you would like to join us then visit the contact page.
+       
         <script src="index.js"></script>
       </body>
     </html>`);
