@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set("view engine","ejs");
 
-app.listen(3000, () => console.log("Server is listening on PORT 3000"));
+app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000"));
 
 app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
