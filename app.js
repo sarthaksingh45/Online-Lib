@@ -36,8 +36,16 @@ app.get("/register-a-user", (req,res) =>{
 
 app.get("/public-library", (req,res) => {
   let username = req.query.username;
-  console.log(username);
-  res.render("lib",{user: "jakghldaghl", email:"something@gmail.com"});
+  let email = "";
+  User.findOne({email : userName}, (err, User) => {
+    if(User == null){
+        res.send(JSON.stringify({msg: "Not a User"}));
+    }
+    email = User.email;
+    
+})
+  //console.log(username);
+  res.render("lib",{user: username, email:email});
 })
 
 

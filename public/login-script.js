@@ -27,7 +27,7 @@ $("#login-btn").click(function(){
     }
     $.post("https://our-online-library.herokuapp.com/login",{userName: emailText,userPassword:passText},function(data){
         if(data.msg == "all good"){
-            window.location = "https://our-online-library.herokuapp.com/imppages";
+            window.location = `https://our-online-library.herokuapp.com/public-library?username=${emailText}`;
         }else{
             $("#wrong-pass").show();
             setTimeout(function(){
