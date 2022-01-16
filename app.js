@@ -30,6 +30,10 @@ app.get("/home", (req,res) =>{
   res.sendFile(__dirname+"/public/index.html");
 });
 
+app.get("/register-a-user", (req,res) =>{
+  res.sendFile(__dirname+"/public/register.html");
+});
+
 app.get("/public-library", (req,res) => {
   let username = req.query.username;
   console.log(username);

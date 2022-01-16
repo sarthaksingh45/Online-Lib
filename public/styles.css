@@ -83,28 +83,77 @@ a.btn.btn-lg.btn-secondary.fw-bold {
 }
 
 .abt-desc p{
-  text-shadow: none;
+  /* text-shadow: 2px 2px goldenrod; */
+  color: black;
+  /* background: radial-gradient(closest-side,#000000a3,transparent); */
   font-weight:700;
+}
+span.h1.fw-bold.mb-0 {
+  position:relative;
+  left:-70px;
+}
+
+.display-none{
+  display: none;
+}
+
+@keyframes abt-us-section-anim{
+  0%{padding: 10%;
+    margin-left: -3%;
+    width: 1356px;
+    background-color: #f7f7f7;}
+  25%{background: radial-gradient(closest-side, #E3B920,transparent);padding: 10%;
+    margin-left: -3%;
+    background-color: #f7f7f7;
+    width: 1356px;}
+  50%{background: radial-gradient(farthest-side, #E3B920,transparent);padding: 10%;
+    margin-left: -3%;
+    background-color: #f7f7f7;
+    width: 1356px;}
+  100%{background: url("gold-pattern_bottom_left.png") left bottom no-repeat, url("gold-pattern_bottom_right.png") right bottom no-repeat,url("gold-pattern_top_left.png") left top no-repeat,url("gold-pattern_top_right.png") top right no-repeat;
+    padding: 10%;
+    margin-left: -3%;
+    width: 1356px;
+    background-color: #f7f7f7;
+    background-size: 200px 200px;
+    }
+}
+.anim{
+  animation-name: abt-us-section-anim;
+  padding: 10%;
+    margin-left: -3%;
+    width: 1356px;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 
 #about-us{
   padding: 10%;
   margin-left: -3%;
   width: 1356px;
-  background-color: #fff;
+  background-color: #f7f7f7;
+}
+#about-us .card{
+  background-image: url("gold.jpg");
 }
 .about-us{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 600px;
+  height: auto;
+  padding: 5% 2% ;
 }
 
 .abtimg{
   width: 40%;
+  transform: rotate(12deg);
+
 }
 .abt-desc-container{
   width: 40%;
+  font-size: 21px;
+  font-family: 'Dancing Script', cursive;
   
 }
 .abt-desc{
@@ -113,4 +162,44 @@ a.btn.btn-lg.btn-secondary.fw-bold {
 
 .abt-btn{
   padding-top: 50px;
+}
+
+/* error */
+.error-msg{
+  display: none;
+  color: red;
+  font-weight: 800;
+}
+.card{
+  padding: 5% 2%;
+  flex-direction: row;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+
+}
+
+.card:hover{
+   transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.pad-zero{
+  padding: 0;
+}
+
+.pad-top{
+  padding-top: 5%;
+}
+
+.footer{
+  height: 100px;
+  padding: 5%;
+  margin-top: 5%;
+  width: 1380px;
+  margin-left: -5%;
+  color: #0dcaf0;
+  background-color: honeydew;
 }
