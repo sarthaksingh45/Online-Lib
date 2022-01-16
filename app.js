@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set("view engine","ejs");
 
-app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000"));
+app.listen(3000, () => console.log("Server is listening on PORT 3000"));
 
 app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
@@ -37,13 +37,13 @@ app.get("/register-a-user", (req,res) =>{
 app.get("/public-library", (req,res) => {
   let username = req.query.username;
   let email = "";
-  User.findOne({email : userName}, (err, User) => {
-    if(User == null){
-        res.send(JSON.stringify({msg: "Not a User"}));
-    }
-    email = User.email;
+//   User.findOne({email : userName}, (err, User) => {
+//     if(User == null){
+//         res.send(JSON.stringify({msg: "Not a User"}));
+//     }
+//     email = User.email;
     
-})
+// })
   //console.log(username);
   res.render("lib",{user: username, email:email});
 })
