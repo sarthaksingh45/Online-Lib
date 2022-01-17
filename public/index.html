@@ -9,6 +9,8 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
 
+    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
@@ -49,7 +51,7 @@
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
   </head>
-  <body class="d-flex h-100 text-center text-white bg-white">
+  <body class="text-center text-white bg-white">
      
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   
@@ -71,41 +73,41 @@
       <a href="#login" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Get Started</a>
     </p>
   </main>
-
-
-  <section id="about-us" class="anim">
+</div>
+  <section id="about-us" class="">
     
-    <div class="card ">
-      <div class="about-us">
-      <div class="abtimg">
-        <img src="VIDEO-CONF.png" alt="video-conf-img" width="400" height="300">
+    <div class="card p-5">
+      <div class="row">
+      <div class="col-sm-6">
+        <img src="VIDEO-CONF.png" alt="video-conf-img" class="card-img card-img-abt">
       </div>
-      <div class="abt-desc-container">
-        <div class="abt-desc">
+      <div class="col-sm-6">
+        <div class="row-8 px-4 custom-font">
           <p>"The cover" is a platform which aims to take you to the world of studying and positivity from the world of social media and negativity. It aims to provide you studying partners who are just unknown to you and to serve as a constant motivation. Join the library and give us an opportunity to provide a helping hand in achieving your dreams.
           </p>
           </div>
-        <div class="abt-btn">
-          <a href="#login" class="btn btn-lg btn-secondary fw-bold bg-gold">Login</a>
+        <div class="row-4 float-bottom abt-btn">
+          <a href="#login" class="btn btn-lg  btn-secondary fw-bold bg-gold px-5">Login</a>
         </div>
       </div>
       </div>
     </div>
   </section>
-  <section id="login" class="vh-100">
+
+  <section id="login" class="bg-white text-center">
     <div class="container-fluid">
       <div class="card pad-zero">
       <div class="row">
         <div class="col-sm-6 text-black">
   
-          <div class="px-5 ms-xl-4 pad-top">
-            <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
-            <span class="h1 fw-bold mb-0">The Cover</span>
+          <div class="row p-4 text-center">
+            
+            <p class="h1 fw-bold mb-0">The Cover</p>
           </div>
   
-          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+          <div class="row px-5">
   
-            <form style="width: 23rem;">
+            <form class="px-5">
   
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
   
@@ -127,7 +129,7 @@
               </div>
   
               
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              <p>Don't have an account? <a href="https://our-online-library.herokuapp.com/register-a-user" class="link-info">Register here</a></p>
   
             </form>
   
@@ -142,15 +144,14 @@
     </div>
   </section>
   
-  <div id="meet"></div>
 
-  <footer id="contact" class="mt-auto footer">
+  <footer id="contact" class="mt-auto">
     <p>Dedicated into the welfare of the Students
 
 
     </p>
   </footer>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="login-script.js"></script>

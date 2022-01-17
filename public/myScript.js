@@ -7,8 +7,11 @@ const options = {
     parentNode: document.querySelector('#meet'),
     userInfo: {
         email: email,
-        displayName: user
+        displayName: user,
     }
 };
 const api = new JitsiMeetExternalAPI(domain, options);
+api.addListener("videoConferenceLeft", function(){
+    window.location ="https://our-online-library.herokuapp.com/home";
+});
 //console.log(user);
