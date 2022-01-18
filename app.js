@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
+var jwt = require("jsonwebtoken");
+var fs = require("fs");
 app.use(cors());
+
 
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
@@ -9,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'))
 app.set("view engine","ejs");
 
-app.listen(process.env.PORT, () => console.log("Server is listening on PORT 3000"));
+app.listen(3000, () => console.log("Server is listening on PORT 3000"));
 
 app.post("/login", (req, res) => {
     let {userName, userPassword} = req.body;
@@ -45,7 +48,29 @@ app.get("/public-library", (req,res) => {
     
 // })
   //console.log(username);
-  res.render("lib",{user: username, email:email});
+  var key = fs.readFileSync('key.pk');
+  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": 1642525456,
+  "nbf": 0,"context": {
+    "features": {
+      "livestreaming": false,
+      "outbound-call": false,
+      "sip-outbound-call": false,
+      "transcription": false,
+      "recording": false
+    },
+    "user": {
+      "moderator": false,
+      "name": `${username}`,
+      "id": `${username}`,
+      "avatar": "",
+      "email": ""
+    }
+  }},key,{algorithm: "RS256",header: {
+    "alg": "RS256",
+    "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/36dadd",
+    "typ": "JWT"
+  }})
+  res.render("lib",{user: username, email:email, jwt: token});
 })
 
 

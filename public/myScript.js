@@ -1,14 +1,17 @@
-const domain = 'meet.jit.si';
+const domain = '8x8.vc';
 
 const options = {
-    roomName: 'MyPublicLibrary',
+    roomName: 'vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/MyPublicLibrary',
     width: window.screen.width,
     height: window.screen.height,
     parentNode: document.querySelector('#meet'),
-    userInfo: {
-        email: email,
-        displayName: user,
-    }
+    // userInfo: {
+    //     email: email,
+    //     displayName: user,
+    //     "moderator": false,
+    //     configOverwrite: { toolbarButtons: ['hangup', 'microphone', 'camera'], },
+    // }
+    jwt: jsontoken
 };
 const api = new JitsiMeetExternalAPI(domain, options);
 api.addListener("videoConferenceLeft", function(){
