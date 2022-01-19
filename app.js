@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
+var bodyParser = require('body-parser');
 var fs = require("fs");
+var Razorpay = require("razorpay");
 app.use(cors());
 
 
 const mongoose = require("mongoose");
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 //express.static(root);
 app.use(express.static('public'))
 app.set("view engine","ejs");
@@ -37,6 +40,40 @@ app.get("/register-a-user", (req,res) =>{
   res.sendFile(__dirname+"/public/register.html");
 });
 
+var instance = new Razorpay({ key_id: 'rzp_live_IuHUh7tegtBSzR', key_secret: 'hL5AOn3SVcKWLRbS7RQIPY1a' });
+
+var options = {
+  amount: 100,  // amount in the smallest currency unit
+  currency: "INR",
+  receipt: "Order Succesfully placed"
+};
+
+app.get("/create/orderId",function(req,res){
+  instance.orders.create(options, function(err, order) {
+    //console.log(order);
+    res.send(JSON.stringify(order));
+  });
+});
+
+app.post("/api/payment/verify",(req,res)=>{
+  // var r = json(req.body);
+  //console.log(req.body);
+  
+  let body=req.body.response.razorpay_order_id + "|" + req.body.response.razorpay_payment_id;
+ 
+   var crypto = require("crypto");
+   var expectedSignature = crypto.createHmac('sha256', 'hL5AOn3SVcKWLRbS7RQIPY1a')
+                                   .update(body.toString())
+                                   .digest('hex');
+                                   //console.log("sig received " ,req.body.response.razorpay_signature);
+                                   //console.log("sig generated " ,expectedSignature);
+   var response = {"signatureIsValid":"false"}
+   if(expectedSignature === req.body.response.razorpay_signature)
+    response={"signatureIsValid":"true"}
+       res.send(response);
+  // res.send("ok");
+   });
+
 app.get("/public-library", (req,res) => {
   let username = req.query.username;
   let email = "";
@@ -49,8 +86,8 @@ app.get("/public-library", (req,res) => {
 // })
   //console.log(username);
   var key = fs.readFileSync('key.pk');
-  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": 1642525456,
-  "nbf": 0,"context": {
+  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": 1642621693,
+  "nbf": 1642614488,"context": {
     "features": {
       "livestreaming": false,
       "outbound-call": false,
@@ -60,16 +97,17 @@ app.get("/public-library", (req,res) => {
     },
     "user": {
       "moderator": false,
-      "name": `${username}`,
-      "id": `${username}`,
+      "name": username,
+      "id": username,
       "avatar": "",
       "email": ""
     }
   }},key,{algorithm: "RS256",header: {
     "alg": "RS256",
-    "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/36dadd",
+    "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/5712b2",
     "typ": "JWT"
   }})
+  //fs.writeFileSync("gen-out.txt",token);
   res.render("lib",{user: username, email:email, jwt: token});
 })
 
