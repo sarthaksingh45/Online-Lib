@@ -5,6 +5,7 @@ var jwt = require("jsonwebtoken");
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var Razorpay = require("razorpay");
+var uuid = require('uuid-random');
 app.use(cors());
 
 
@@ -85,9 +86,10 @@ app.get("/public-library", (req,res) => {
     
 // })
   //console.log(username);
+  const now = new Date();
   var key = fs.readFileSync('key.pk');
-  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": 1642621693,
-  "nbf": 1642614488,"context": {
+  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": Math.round(now.setHours(now.getHours() + 3) / 1000),
+  "nbf": (Math.round((new Date).getTime() / 1000) - 10),"context": {
     "features": {
       "livestreaming": false,
       "outbound-call": false,
@@ -98,7 +100,7 @@ app.get("/public-library", (req,res) => {
     "user": {
       "moderator": false,
       "name": username,
-      "id": username,
+      "id": uuid(),
       "avatar": "",
       "email": ""
     }
