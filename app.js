@@ -76,7 +76,7 @@ app.post("/api/payment/verify",(req,res)=>{
    });
 
    app.get("/api/get-price", (req,res) => {
-     res.send(JSON.stringify({price: "19900"}));
+     res.send(JSON.stringify({price: "000"}));
    })
 
    app.get("/api/get-jwt", (req, res) => {
