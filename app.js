@@ -75,6 +75,38 @@ app.post("/api/payment/verify",(req,res)=>{
   // res.send("ok");
    });
 
+   app.get("/api/get-price", (req,res) => {
+     res.send(JSON.stringify({price: "19900"}));
+   })
+
+   app.get("/api/get-jwt", (req, res) => {
+     let username = req.query.username;
+     const now = new Date();
+      var key = fs.readFileSync('key.pk');
+      var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": Math.round(now.setHours(now.getHours() + 3) / 1000),
+      "nbf": (Math.round((new Date).getTime() / 1000) - 10),"context": {
+        "features": {
+          "livestreaming": false,
+          "outbound-call": false,
+          "sip-outbound-call": false,
+          "transcription": false,
+          "recording": false
+        },
+        "user": {
+          "moderator": false,
+          "name": username,
+          "id": uuid(),
+          "avatar": "",
+          "email": ""
+        }
+      }},key,{algorithm: "RS256",header: {
+        "alg": "RS256",
+        "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/5712b2",
+        "typ": "JWT"
+      }});
+      res.send(JSON.stringify({token : token}));
+   });
+
 app.get("/public-library", (req,res) => {
   let username = req.query.username;
   let email = "";
