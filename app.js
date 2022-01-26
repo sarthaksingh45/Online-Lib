@@ -145,6 +145,43 @@ app.get("/public-library", (req,res) => {
   res.render("lib",{user: username, email:email, jwt: token});
 })
 
+app.get("/public-library-with-moderator", (req,res) => {
+  let username = req.query.username;
+  let email = "";
+//   User.findOne({email : userName}, (err, User) => {
+//     if(User == null){
+//         res.send(JSON.stringify({msg: "Not a User"}));
+//     }
+//     email = User.email;
+    
+// })
+  //console.log(username);
+  const now = new Date();
+  var key = fs.readFileSync('key.pk');
+  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": Math.round(now.setHours(now.getHours() + 3) / 1000),
+  "nbf": (Math.round((new Date).getTime() / 1000) - 10),"context": {
+    "features": {
+      "livestreaming": false,
+      "outbound-call": false,
+      "sip-outbound-call": false,
+      "transcription": false,
+      "recording": false
+    },
+    "user": {
+      "moderator": true,
+      "name": username,
+      "id": uuid(),
+      "avatar": "",
+      "email": ""
+    }
+  }},key,{algorithm: "RS256",header: {
+    "alg": "RS256",
+    "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/5712b2",
+    "typ": "JWT"
+  }})
+  //fs.writeFileSync("gen-out.txt",token);
+  res.render("lib",{user: username, email:email, jwt: token});
+})
 
 app.post("/register", (req, res)=>{
     //console.log(req.body);
