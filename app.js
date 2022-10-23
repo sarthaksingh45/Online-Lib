@@ -41,7 +41,7 @@ app.get("/register-a-user", (req,res) =>{
   res.sendFile(__dirname+"/public/register.html");
 });
 
-var instance = new Razorpay({ key_id: 'rzp_live_IuHUh7tegtBSzR', key_secret: 'hL5AOn3SVcKWLRbS7RQIPY1a' });
+var instance = new Razorpay(razorpayKey);
 
 var options = {
   amount: 100,  // amount in the smallest currency unit
@@ -199,7 +199,7 @@ app.post("/register", (req, res)=>{
 
 
 async function main(){
-    await mongoose.connect("mongodb+srv://ss-admin:allgood@cluster0.0jlnr.mongodb.net/",
+    await mongoose.connect(mongooseKey,
     { dbName: 'userDb'});
 }
 
