@@ -120,7 +120,7 @@ app.get("/public-library", (req,res) => {
   //console.log(username);
   const now = new Date();
   var key = fs.readFileSync('key.pk');
-  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b","iss":"chat","exp": Math.round(now.setHours(now.getHours() + 3) / 1000),
+  var token = jwt.sign({"aud":"jitsi", "room":"*","sub":"vpaas-magic-cookie-8e85e17fddd946d29f8b3cdc15ef03da","iss":"chat","exp": Math.round(now.setHours(now.getHours() + 3) / 1000),
   "nbf": (Math.round((new Date).getTime() / 1000) - 10),"context": {
     "features": {
       "livestreaming": false,
@@ -138,7 +138,7 @@ app.get("/public-library", (req,res) => {
     }
   }},key,{algorithm: "RS256",header: {
     "alg": "RS256",
-    "kid": "vpaas-magic-cookie-5c7717c6a236429286b7061cd688dc6b/5712b2",
+    "kid": "vpaas-magic-cookie-8e85e17fddd946d29f8b3cdc15ef03da/cee85d",
     "typ": "JWT"
   }})
   //fs.writeFileSync("gen-out.txt",token);
